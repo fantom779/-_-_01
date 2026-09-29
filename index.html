@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Легко Школа</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #7b8497;
+    --primary: #4169e1;
+    --primary2: #5b7cfa;
+    --danger: #e74c3c;
+    --border: #e7ebf2;
+    --shadow: 0 10px 30px rgba(35, 55, 100, .08);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* LOGIN */
+
+#loginScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        radial-gradient(circle at top left, #dce6ff 0, transparent 35%),
+        radial-gradient(circle at bottom right, #dfe9ff 0, transparent 35%),
+        var(--bg);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(30, 50, 100, .15);
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary), #7a8fff);
+    color: white;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 18px;
+    box-shadow: 0 10px 25px rgba(65,105,225,.25);
+}
+
+.login-box h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.login-box > p {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.login-tabs {
+    display: flex;
+    gap: 8px;
+    background: #f0f3f8;
+    padding: 5px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+.login-tab {
+    flex: 1;
+    padding: 12px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--muted);
+}
+
+.login-tab.active {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
+}
+
+.input {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: #f8f9fc;
+    padding: 14px 15px;
+    border-radius: 13px;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.input:focus {
+    border-color: var(--primary);
+    background: white;
+}
+
+.primary-btn {
+    width: 100%;
+    border: 0;
+    background: linear-gradient(135deg, var(--primary), var(--primary2));
+    color: white;
+    padding: 14px;
+    border-radius: 13px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(65,105,225,.2);
+}
+
+.login-info {
+    margin-top: 18px;
+    padding: 12px;
+    background: #f5f7fb;
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* APP */
+
+#app {
+    display: none;
+    min-height: 100vh;
+    padding-bottom: 90px;
+}
+
+.topbar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.topbar-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, var(--primary), #778dff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.brand-title {
+    font-weight: 800;
+}
+
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.user-badge {
+    border: 0;
+    background: #eef2ff;
+    color: var(--primary);
+    border-radius: 12px;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 22px 18px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #4169e1, #7189ff);
+    color: white;
+    padding: 25px;
+    border-radius: 25px;
+    margin-bottom: 18px;
+    box-shadow: 0 15px 35px rgba(65,105,225,.2);
+}
+
+.hero small {
+    opacity: .8;
+}
+
+.hero h2 {
+    font-size: 26px;
+    margin: 8px 0;
+}
+
+.hero p {
+    opacity: .9;
+}
+
+/* CARDS */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 17px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+}
+
+.card-title {
+    font-weight: 800;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.stat-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* SCHEDULE */
+
+.day-tabs {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.day-tab {
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    background: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--muted);
+}
+
+.day-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.lesson {
+    display: flex;
+    gap: 13px;
+    align-items: center;
+}
+
+.lesson-number {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: #eef2ff;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-name {
+    font-weight: 800;
+}
+
+.lesson-time {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* HOMEWORK */
+
+.subject {
+    display: inline-block;
+    background: #eef2ff;
+    color: var(--primary);
+    padding: 5px 9px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.task {
+    line-height: 1.5;
+}
+
+.date {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* DUTY */
+
+.duty-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.duty-icon {
+    width: 50px;
+    height: 50px;
+    background: #fff4d8;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.duty-name {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* BUTTONS */
+
+.btn-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 0;
+    padding: 9px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background: #edf1f7;
+    color: #344054;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn.danger {
+    background: #fff0ee;
+    color: var(--danger);
+}
+
+.admin-tools {
+    background: linear-gradient(135deg, #1d2433, #303b50);
+    color: white;
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.admin-tools h3 {
+    margin-bottom: 5px;
+}
+
+.admin-tools p {
+    color: #bfc7d8;
+    font-size: 13px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.nav-inner {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-btn {
+    border: 0;
+    background: transparent;
+    color: #9299a8;
+    cursor: pointer;
+    min-width: 65px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.nav-icon {
+    font-size: 21px;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.nav-btn.active {
+    color: var(--primary);
+}
+
+/* MODAL */
+
+.modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,20,35,.55);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.modal-bg.show {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 22px;
+    padding: 22px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal h2 {
+    margin-bottom: 17px;
+}
+
+.modal label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 12px;
+}
+
+.modal textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 35px 10px;
+}
+
+@media(max-width: 600px) {
+    .container {
+        padding: 18px 13px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding: 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(min-width: 800px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="loginScreen">
+    <div class="login-box">
+
+        <div class="logo">🎓</div>
+
+        <h1>Легко Школа</h1>
+        <p>Твоя школа — в одному місці</p>
+
+        <div class="login-tabs">
+            <button class="login-tab active" id="studentTab" onclick="setLoginType('student')">
+                👨‍🎓 Учень
+            </button>
+
+            <button class="login-tab" id="adminTab" onclick="setLoginType('admin')">
+                👑 Староста
+            </button>
+        </div>
+
+        <div id="studentLogin">
+            <input
+                class="input"
+                id="studentName"
+                placeholder="Введи своє ім'я"
+            >
+
+            <button class="primary-btn" onclick="loginStudent()">
+                Увійти
+            </button>
+        </div>
+
+        <div id="adminLogin" style="display:none;">
+            <input
+                class="input"
+                id="adminLoginInput"
+                placeholder="Логін"
+            >
+
+            <input
+                class="input"
+                id="adminPasswordInput"
+                type="password"
+                placeholder="Пароль"
+            >
+
+            <button class="primary-btn" onclick="loginAdmin()">
+                Увійти як староста
+            </button>
+        </div>
+
+        <div class="login-info">
+            <b>Учень:</b> вводить лише ім'я та переглядає інформацію.<br>
+            <b>Староста:</b> має доступ до редагування розкладу, домашніх завдань, подій і чергування.
+        </div>
+
+    </div>
+</section>
+
+
+<!-- APP -->
+
+<div id="app">
+
+    <header class="topbar">
+        <div class="topbar-inner">
+
+            <div class="brand">
+                <div class="brand-icon">🎓</div>
+
+                <div>
+                    <div class="brand-title">Легко Школа</div>
+                    <div class="brand-subtitle">9-Б • Економ група</div>
+                </div>
+            </div>
+
+            <button class="user-badge" id="userBadge" onclick="openProfile()">
+                Учень
+            </button>
+
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- HOME -->
+
+        <section class="page active" id="page-home">
+
+            <div class="hero">
+                <small id="currentDate"></small>
+                <h2 id="helloText">Привіт!</h2>
+                <p>Усе необхідне для школи — тут.</p>
+            </div>
+
+            <div id="adminHomeTools"></div>
+
+            <div class="grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-number" id="statLessons">0</div>
+                    <div class="stat-label">уроків сьогодні</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-number" id="statHomework">0</div>
+                    <div class="stat-label">домашніх завдань</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number" id="statEvents">0</div>
+                    <div class="stat-label">подій</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🧹</div>
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">чергування</div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-title">📌 Сьогодні</div>
+                <div id="todayPreview"></div>
+            </div>
+
+        </section>
+
+
+        <!-- SCHEDULE -->
+
+        <section class="page" id="page-schedule">
+
+            <div class="page-title">Розклад</div>
+            <div class="page-subtitle">Уроки по днях тижня</div>
+
+            <div class="day-tabs" id="scheduleDays"></div>
+
+            <div id="scheduleContent"></div>
+
+        </section>
+
+
+        <!-- HOMEWORK -->
+
+        <section class="page" id="page-homework">
+
+            <div class="page-title">Домашка</div>
+            <div class="page-subtitle">Що потрібно зробити</div>
+
+            <div id="homeworkAdminButton"></div>
+
+            <div id="homeworkContent"></div>
+
+        </section>
+
+
+        <!-- EVENTS -->
+
+        <section class="page" id="page-events">
+
+            <div class="page-title">Події</div>
+            <div class="page-subtitle">Важливі шкільні події</div>
+
+            <div id="eventsAdminButton"></div>
+
+            <div id="eventsContent"></div>
+
+        </section>
+
+
+        <!-- DUTY -->
+
+        <section class="page" id="page-duty">
+
+            <div class="page-title">Чергові</div>
+            <div class="page-subtitle">Хто чергує цього тижня</div>
+
+            <div id="dutyContent"></div>
+
+        </section>
+
+
+        <!-- ADMIN -->
+
+        <section class="page" id="page-admin">
+
+            <div class="page-title">Адмін-панель</div>
+            <div class="page-subtitle">Керування додатком</div>
+
+            <div class="admin-tools">
+                <h3>👑 Режим старости</h3>
+                <p>Тільки ти маєш доступ до редагування даних.</p>
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">⚙️ Керування</div>
+
+                <div class="btn-row">
+                    <button class="btn primary" onclick="openScheduleManager()">
+                        📚 Розклад
+                    </button>
+
+                    <button class="btn primary" onclick="openDutyManager()">
+                        🧹 Чергові
+                    </button>
+
+                    <button class="btn primary" onclick="openHomeworkModal()">
+                        📝 Додати домашку
+                    </button>
+
+                    <button class="btn primary" onclick="openEventModal()">
+                        📅 Додати подію
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">🗑️ Дані</div>
+
+                <p class="muted">
+                    Скидання поверне стандартні демонстраційні дані.
+                </p>
+
+                <div class="btn-row">
+
+                    <button class="btn danger" onclick="resetData()">
+                        Скинути всі дані
+                    </button>
+
+                    <button class="btn" onclick="logout()">
+                        Вийти
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <div class="nav-inner">
+
+            <button class="nav-btn active" onclick="showPage('home', this)">
+                <span class="nav-icon">🏠</span>
+                Головна
+            </button>
+
+            <button class="nav-btn" onclick="showPage('schedule', this)">
+                <span class="nav-icon">📚</span>
+                Розклад
+            </button>
+
+            <button class="nav-btn" onclick="showPage('homework', this)">
+                <span class="nav-icon">📝</span>
+                Домашка
+            </button>
+
+            <button class="nav-btn" onclick="showPage('events', this)">
+                <span class="nav-icon">📅</span>
+                Події
+            </button>
+
+            <button class="nav-btn" onclick="showPage('duty', this)">
+                <span class="nav-icon">🧹</span>
+                Чергові
+            </button>
+
+            <button
+                class="nav-btn"
+                id="adminNav"
+                style="display:none;"
+                onclick="showPage('admin', this)"
+            >
+                <span class="nav-icon">⚙️</span>
+                Адмін
+            </button>
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal-bg" id="modalBg">
+
+    <div class="modal" id="modalContent"></div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   НАЛАШТУВАННЯ
+========================= */
+
+const ADMIN_LOGIN = "friz1k";
+const ADMIN_PASSWORD = "12345678";
+
+const DAYS = [
+    "Понеділок",
+    "Вівторок",
+    "Середа",
+    "Четвер",
+    "П'ятниця"
+];
+
+
+/* =========================
+   СТАН
+========================= */
+
+let isAdmin = false;
+let loginType = "student";
+let selectedDay = 0;
+
+
+/* =========================
+   СТАНДАРТНІ ДАНІ
+========================= */
+
+const defaultSchedule = {
+
+    "Понеділок": [
+        {name:"Українська мова", time:"08:30"},
+        {name:"Алгебра", time:"09:25"},
+        {name:"Історія України", time:"10:20"},
+        {name:"Фізика", time:"11:15"},
+        {name:"Англійська мова", time:"12:10"}
+    ],
+
+    "Вівторок": [
+        {name:"Геометрія", time:"08:30"},
+        {name:"Українська література", time:"09:25"},
+        {name:"Хімія", time:"10:20"},
+        {name:"Інформатика", time:"11:15"},
+        {name:"Фізична культура", time:"12:10"}
+    ],
+
+    "Середа": [
+        {name:"Алгебра", time:"08:30"},
+        {name:"Географія", time:"09:25"},
+        {name:"Англійська мова", time:"10:20"},
+        {name:"Біологія", time:"11:15"},
+        {name:"Фізика", time:"12:10"}
+    ],
+
+    "Четвер": [
+        {name:"Історія України", time:"08:30"},
+        {name:"Хімія", time:"09:25"},
+        {name:"Геометрія", time:"10:20"},
+        {name:"Українська мова", time:"11:15"},
+        {name:"Інформатика", time:"12:10"}
+    ],
+
+    "П'ятниця": [
+        {name:"Алгебра", time:"08:30"},
+        {name:"Географія", time:"09:25"},
+        {name:"Фізична культура", time:"10:20"},
+        {name:"Англійська мова", time:"11:15"}
+    ]
+
+};
+
+
+const defaultDuty = {
+    "Понеділок": "Іваненко Максим",
+    "Вівторок": "Петренко Андрій",
+    "Середа": "Коваленко Назар",
+    "Четвер": "Мельник Артем",
+    "П'ятниця": "Шевченко Данило"
+};
+
+
+const defaultHomework = [
+    {
+        id: 1,
+        subject: "Алгебра",
+        task: "Повторити формули та виконати вправу №5",
+        date: "Завтра"
+    },
+    {
+        id: 2,
+        subject: "Історія",
+        task: "Опрацювати параграф та вивчити основні дати",
+        date: "Завтра"
+    },
+    {
+        id: 3,
+        subject: "Географія",
+        task: "Вивчити назви ізоліній",
+        date: "П'ятниця"
+    }
+];
+
+
+const defaultEvents = [
+    {
+        id: 1,
+        title: "Посвята в ліцеї",
+        description: "Шкільний захід",
+        date: "Цього тижня"
+    }
+];
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
+
+function loadData() {
+
+    if (!localStorage.getItem("ls_schedule")) {
+        localStorage.setItem(
+            "ls_schedule",
+            JSON.stringify(defaultSchedule)
+        );
+    }
+
+    if (!localStorage.getItem("ls_duty")) {
+        localStorage.setItem(
+            "ls_duty",
+            JSON.stringify(defaultDuty)
+        );
+    }
+
+    if (!localStorage.getItem("ls_homework")) {
+        localStorage.setItem(
+            "ls_homework",
+            JSON.stringify(defaultHomework)
+        );
+    }
+
+    if (!localStorage.getItem("ls_events")) {
+        localStorage.setItem(
+            "ls_events",
+            JSON.stringify(defaultEvents)
+        );
+    }
+}
+
+
+function getSchedule() {
+    return JSON.parse(localStorage.getItem("ls_schedule"));
+}
+
+function getDuty() {
+    return JSON.parse(localStorage.getItem("ls_duty"));
+}
+
+function getHomework() {
+    return JSON.parse(localStorage.getItem("ls_homework"));
+}
+
+function getEvents() {
+    return JSON.parse(localStorage.getItem("ls_events"));
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function setLoginType(type) {
+
+    loginType = type;
+
+    document
+        .getElementById("studentTab")
+        .classList.toggle("active", type === "student");
+
+    document
+        .getElementById("adminTab")
+        .classList.toggle("active", type === "admin");
+
+    document.getElementById("studentLogin").style.display =
+        type === "student" ? "block" : "none";
+
+    document.getElementById("adminLogin").style.display =
+        type === "admin" ? "block" : "none";
+}
+
+
+function loginStudent() {
+
+    const name =
+        document.getElementById("studentName").value.trim();
+
+    if (!name) {
+        alert("Введи своє ім'я.");
+        return;
+    }
+
+    localStorage.setItem("student_name", name);
+
+    isAdmin = false;
+
+    startApp();
+}
+
+
+function loginAdmin() {
+
+    const login =
+        document.getElementById("adminLoginInput").value.trim();
+
+    const password =
+        document.getElementById("adminPasswordInput").value;
+
+    if (
+        login === ADMIN_LOGIN &&
+        password === ADMIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem("ls_admin", "true");
+
+        isAdmin = true;
+
+        startApp();
+
+    } else {
+
+        alert("Неправильний логін або пароль.");
+
+    }
+}
+
+
+function logout() {
+
+    sessionStorage.removeItem("ls_admin");
+
+    isAdmin = false;
+
+    document.getElementById("app").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+
+    setLoginType("student");
+}
+
+
+/* =========================
+   START
+========================= */
+
+function startApp() {
+
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+
+    document.getElementById("adminNav").style.display =
+        isAdmin ? "block" : "none";
+
+    const name =
+        localStorage.getItem("student_name") || "Староста";
+
+    document.getElementById("userBadge").textContent =
+        isAdmin ? "👑 Староста" : "👨‍🎓 " + name;
+
+    renderAll();
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(page, button) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    document
+        .getElementById("page-" + page)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================
+   ДАТА
+========================= */
+
+function getCurrentDayIndex() {
+
+    const day = new Date().getDay();
+
+    if (day === 0) return 4;
+    if (day === 6) return 0;
+
+    return day - 1;
+}
+
+
+function renderDate() {
+
+    const date = new Date();
+
+    document.getElementById("currentDate").textContent =
+        date.toLocaleDateString("uk-UA", {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
+        });
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome() {
+
+    renderDate();
+
+    const name =
+        isAdmin
+            ? "Старосто"
+            : localStorage.getItem("student_name") || "Учню";
+
+    document.getElementById("helloText").textContent =
+        "Привіт, " + name + "!";
+
+    const day = DAYS[getCurrentDayIndex()];
+
+    const schedule = getSchedule();
+
+    const homework = getHomework();
+
+    const events = getEvents();
+
+    document.getElementById("statLessons").textContent =
+        schedule[day]?.length || 0;
+
+    document.getElementById("statHomework").textContent =
+        homework.length;
+
+    document.getElementById("statEvents").textContent =
+        events.length;
+
+    const lessons = schedule[day] || [];
+
+    let html = `
+        <div style="font-weight:800;margin-bottom:12px;">
+            ${day}
+        </div>
+    `;
+
+    if (!lessons.length) {
+
+        html += `
+            <div class="empty">
+                Сьогодні уроків немає 🎉
+            </div>
+        `;
+
+    } else {
+
+        lessons.slice(0, 3).forEach((lesson, index) => {
+
+            html += `
+                <div class="lesson" style="margin-bottom:12px;">
+                    <div class="lesson-number">${index + 1}</div>
+
+                    <div class="lesson-info">
+                        <div class="lesson-name">
+                            ${escapeHTML(lesson.name)}
+                        </div>
+
+                        <div class="lesson-time">
+                            ${escapeHTML(lesson.time)}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        });
+
+        if (lessons.length > 3) {
+
+            html += `
+                <div class="muted" style="font-size:13px;">
+                    + ще ${lessons.length - 3} урок(и)
+                </div>
+            `;
+
+        }
+    }
+
+    document.getElementById("todayPreview").innerHTML = html;
+
+
+    if (isAdmin) {
+
+        document.getElementById("adminHomeTools").innerHTML = `
+            <div class="admin-tools">
+                <h3>👑 Ти зараз у режимі старости</h3>
+                <p>Можеш змінювати дані програми через вкладку «Адмін».</p>
+            </div>
+        `;
+
+    } else {
+
+        document.getElementById("adminHomeTools").innerHTML = "";
+
+    }
+}
+
+
+/* =========================
+   SCHEDULE
+========================= */
+
+function renderSchedule() {
+
+    const schedule = getSchedule();
+
+    let tabs = "";
+
+    DAYS.forEach((day, index) => {
+
+        tabs += `
+            <button
+                class="day-tab ${selectedDay === index ? "active" : ""}"
+                onclick="selectScheduleDay(${index})"
+            >
+                ${day.substring(0,3)}
+            </button>
+        `;
+
+    });
+
+    document.getElementById("scheduleDays").innerHTML = tabs;
+
+    const day = DAYS[selectedDay];
+
+    const lessons = schedule[day] || [];
+
+    let html = `
+        <div class="card">
+            <div class="card-title">${day}</div>
+        </div>
+    `;
+
+    if (!lessons.length) {
+
+        html += `
+            <div class="card empty">
+                У цей день уроків немає.
+            </div>
+        `;
+
+    } else {
+
+        lessons.forEach((lesson, index) => {
+
+            html += `
+                <div class="card">
+
+                    <div class="lesson">
+
+                        <div class="lesson-number">
+                            ${index + 1}
+                        </div>
+
+                        <div class="lesson-info">
+
+                            <div class="lesson-name">
+                                ${escapeHTML(lesson.name)}
+                            </div>
+
+                            <div class="lesson-time">
+                                ${escapeHTML(lesson.time)}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    ${
+                        isAdmin
+                        ? `
+                        <div class="btn-row">
+
+                            <button
+                                class="btn"
+                                onclick="editLesson(${selectedDay}, ${index})"
+                            >
+                                ✏️ Змінити
+                            </button>
+
+                            <button
+                                class="btn danger"
+                                onclick="deleteLesson(${selectedDay}, ${index})"
+                            >
+                                🗑️ Видалити
+                            </button>
+
+                        </div>
+                        `
+                        : ""
+                    }
+
+                </div>
+            `;
+
+        });
+
+    }
+
+    if (isAdmin) {
+
+        html += `
+            <button
+                class="primary-btn"
+                style="margin-top:5px;"
+                onclick="addLesson(${selectedDay})"
+            >
+                + Додати урок
+            </button>
+        `;
+
+    }
+
+    document.getElementById("scheduleContent").innerHTML = html;
+}
+
+
+function selectScheduleDay(index) {
+
+    selectedDay = index;
+
+    renderSchedule();
+}
+
+
+function addLesson(dayIndex) {
+
+    const day = DAYS[dayIndex];
+
+    openModal(`
+        <h2>Додати урок</h2>
+
+        <label>Назва предмета</label>
+        <input class="input" id="lessonName" placeholder="Наприклад: Алгебра">
+
+        <label>Час</label>
+        <input class="input" id="lessonTime" placeholder="08:30">
+
+        <div class="btn-row">
+
+            <button class="btn primary" onclick="saveNewLesson(${dayIndex})">
+                Додати
+            </button>
+
+            <button class="btn" onclick="closeModal()">
+                Скасувати
+            </button>
+
+        </div>
+    `);
+}
+
+
+function saveNewLesson(dayIndex) {
+
+    const name =
+        document.getElementById("lessonName").value.trim();
+
+    const time =
+        document.getElementById("lessonTime").value.trim();
+
+    if (!name) {
+        alert("Вкажи предмет.");
+        return;
+    }
+
+    const schedule = getSchedule();
+
+    schedule[DAYS[dayIndex]].push({
+        name: name,
+        time: time || "—"
+    });
+
+    localStorage.setItem(
+        "ls_schedule",
+        JSON.stringify(schedule)
+    );
+
+    closeModal();
+
+    renderAll();
+}
+
+
+function editLesson(dayIndex, lessonIndex) {
+
+    const schedule = getSchedule();
+
+    const lesson =
+        schedule[DAYS[dayIndex]][lessonIndex];
+
+    openModal(`
+        <h2>Редагувати урок</h2>
+
+        <label>Предмет</label>
+        <input
+            class="input"
+            id="lessonName"
+            value="${escapeAttribute(lesson.name)}"
+        >
+
+        <label>Час</label>
+        <input
+            class="input"
+            id="lessonTime"
+            value="${escapeAttribute(lesson.time)}"
+        >
+
+        <div class="btn-row">
+
+            <button
+                class="btn primary"
+                onclick="saveEditedLesson(${dayIndex}, ${lessonIndex})"
+            >
+                Зберегти
+            </button>
+
+            <button class="btn" onclick="closeModal()">
+                Скасувати
+            </button>
+
+        </div>
+    `);
+}
+
+
+function saveEditedLesson(dayIndex, lessonIndex) {
+
+    const schedule = getSchedule();
+
+    schedule[DAYS[dayIndex]][lessonIndex] = {
+        name: document.getElementById("lessonName").value.trim(),
+        time: document.getElementById("lessonTime").value.trim()
+    };
+
+    localStorage.setItem(
+        "ls_schedule",
+        JSON.stringify(schedule)
+    );
+
+    closeModal();
+
+    renderAll();
+}
+
+
+function deleteLesson(dayIndex, lessonIndex) {
+
+    if (!confirm("Видалити цей урок?")) return;
+
+    const schedule = getSchedule();
+
+    schedule[DAYS[dayIndex]].splice(lessonIndex, 1);
+
+    localStorage.setItem(
+        "ls_schedule",
+        JSON.stringify(schedule)
+    );
+
+    renderAll();
+}
+
+
+/* =========================
+   HOMEWORK
+========================= */
+
+function renderHomework() {
+
+    const homework = getHomework();
+
+    if (isAdmin) {
+
+        document.getElementById("homeworkAdminButton").innerHTML = `
+            <button
+                class="primary-btn"
+                style="margin-bottom:15px;"
+                onclick="openHomeworkModal()"
+            >
+                + Додати домашнє завдання
+            </button>
+        `;
+
+    } else {
+
+        document.getElementById("homeworkAdminButton").innerHTML = "";
+
+    }
+
+
+    if (!homework.length) {
+
+        document.getElementById("homeworkContent").innerHTML = `
+            <div class="card empty">
+                Домашніх завдань немає 🎉
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+    homework.forEach(item => {
+
+        html += `
+            <div class="card">
+
+                <div class="subject">
+                    ${escapeHTML(item.subject)}
+                </div>
+
+                <div class="task">
+                    ${escapeHTML(item.task)}
+                </div>
+
+                <div class="date">
+                    📅 ${escapeHTML(item.date || "—")}
+                </div>
+
+                ${
+                    isAdmin
+                    ? `
+                    <div class="btn-row">
+
+                        <button
+                            class="btn danger"
+                            onclick="deleteHomework(${item.id})"
+                        >
+                            🗑️ Видалити
+                        </button>
+
+                    </div>
+                    `
+                    : ""
+                }
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("homeworkContent").innerHTML = html;
+}
+
+
+function openHomeworkModal() {
+
+    openModal(`
+
+        <h2>Нова домашка</h2>
+
+        <label>Предмет</label>
+
+        <input
+            class="input"
+            id="hwSubject"
+            placeholder="Наприклад: Алгебра"
+        >
+
+        <label>Завдання</label>
+
+        <textarea
+            class="input"
+            id="hwTask"
+            placeholder="Що потрібно зробити?"
+        ></textarea>
+
+        <label>Коли здати</label>
+
+        <input
+            class="input"
+            id="hwDate"
+            placeholder="Наприклад: завтра"
+        >
+
+        <div class="btn-row">
+
+            <button
+                class="btn primary"
+                onclick="saveHomework()"
+            >
+                Додати
+            </button>
+
+            <button
+                class="btn"
+                onclick="closeModal()"
+            >
+                Скасувати
+            </button>
+
+        </div>
+    `);
+}
+
+
+function saveHomework() {
+
+    const subject =
+        document.getElementById("hwSubject").value.trim();
+
+    const task =
+        document.getElementById("hwTask").value.trim();
+
+    const date =
+        document.getElementById("hwDate").value.trim();
+
+    if (!subject || !task) {
+
+        alert("Заповни предмет і завдання.");
+
+        return;
+    }
+
+    const homework = getHomework();
+
+    homework.unshift({
+        id: Date.now(),
+        subject,
+        task,
+        date: date || "—"
+    });
+
+    localStorage.setItem(
+        "ls_homework",
+        JSON.stringify(homework)
+    );
+
+    closeModal();
+
+    renderAll();
+}
+
+
+function deleteHomework(id) {
+
+    if (!confirm("Видалити це домашнє завдання?")) return;
+
+    const homework =
+        getHomework().filter(item => item.id !== id);
+
+    localStorage.setItem(
+        "ls_homework",
+        JSON.stringify(homework)
+    );
+
+    renderAll();
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+function renderEvents() {
+
+    const events = getEvents();
+
+    if (isAdmin) {
+
+        document.getElementById("eventsAdminButton").innerHTML = `
+            <button
+                class="primary-btn"
+                style="margin-bottom:15px;"
+                onclick="openEventModal()"
+            >
+                + Додати подію
+            </button>
+        `;
+
+    } else {
+
+        document.getElementById("eventsAdminButton").innerHTML = "";
+
+    }
+
+
+    if (!events.length) {
+
+        document.getElementById("eventsContent").innerHTML = `
+            <div class="card empty">
+                Подій поки немає.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+    events.forEach(event => {
+
+        html += `
+            <div class="card">
+
+                <div class="card-title">
+                    📅 ${escapeHTML(event.title)}
+                </div>
+
+                <div class="task">
+                    ${escapeHTML(event.description)}
+                </div>
+
+                <div class="date">
+                    ${escapeHTML(event.date)}
+                </div>
+
+                ${
+                    isAdmin
+                    ? `
+                    <div class="btn-row">
+
+                        <button
+                            class="btn danger"
+                            onclick="deleteEvent(${event.id})"
+                        >
+                            🗑️ Видалити
+                        </button>
+
+                    </div>
+                    `
+                    : ""
+                }
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("eventsContent").innerHTML = html;
+}
+
+
+function openEventModal() {
+
+    openModal(`
+
+        <h2>Нова подія</h2>
+
+        <label>Назва</label>
+
+        <input
+            class="input"
+            id="eventTitle"
+            placeholder="Наприклад: Батьківські збори"
+        >
+
+        <label>Опис</label>
+
+        <textarea
+            class="input"
+            id="eventDescription"
+            placeholder="Додаткова інформація"
+        ></textarea>
+
+        <label>Дата</label>
+
+        <input
+            class="input"
+            id="eventDate"
+            placeholder="Наприклад: 30 вересня"
+        >
+
+        <div class="btn-row">
+
+            <button
+                class="btn primary"
+                onclick="saveEvent()"
+            >
+                Додати
+            </button>
+
+            <button
+                class="btn"
+                onclick="closeModal()"
+            >
+                Скасувати
+            </button>
+
+        </div>
+    `);
+}
+
+
+function saveEvent() {
+
+    const title =
+        document.getElementById("eventTitle").value.trim();
+
+    const description =
+        document.getElementById("eventDescription").value.trim();
+
+    const date =
+        document.getElementById("eventDate").value.trim();
+
+    if (!title) {
+
+        alert("Вкажи назву події.");
+
+        return;
+    }
+
+    const events = getEvents();
+
+    events.unshift({
+        id: Date.now(),
+        title,
+        description: description || "—",
+        date: date || "—"
+    });
+
+    localStorage.setItem(
+        "ls_events",
+        JSON.stringify(events)
+    );
+
+    closeModal();
+
+    renderAll();
+}
+
+
+function deleteEvent(id) {
+
+    if (!confirm("Видалити подію?")) return;
+
+    const events =
+        getEvents().filter(event => event.id !== id);
+
+    localStorage.setItem(
+        "ls_events",
+        JSON.stringify(events)
+    );
+
+    renderAll();
+}
+
+
+/* =========================
+   DUTY
+========================= */
+
+function renderDuty() {
+
+    const duty = getDuty();
+
+    let html = "";
+
+    DAYS.forEach((day, index) => {
+
+        html += `
+            <div class="card">
+
+                <div class="muted" style="font-size:13px;margin-bottom:8px;">
+                    ${day}
+                </div>
+
+                <div class="duty-main">
+
+                    <div class="duty-icon">
+                        🧹
+                    </div>
+
+                    <div>
+
+                        <div class="duty-name">
+                            ${escapeHTML(duty[day] || "Не призначено")}
+                        </div>
+
+                        <div class="muted" style="font-size:12px;">
+                            Черговий / чергові
+                        </div>
+
+                    </div>
+
+                </div>
+
+                ${
+                    isAdmin
+                    ? `
+                    <div class="btn-row">
+
+                        <button
+                            class="btn"
+                            onclick="editDuty(${index})"
+                        >
+                            ✏️ Змінити
+                        </button>
+
+                    </div>
+                    `
+                    : ""
+                }
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("dutyContent").innerHTML = html;
+}
+
+
+function editDuty(dayIndex) {
+
+    const day = DAYS[dayIndex];
+
+    const duty = getDuty();
+
+    openModal(`
+
+        <h2>Черговий — ${day}</h2>
+
+        <label>Ім'я</label>
+
+        <input
+            class="input"
+            id="dutyName"
+            value="${escapeAttribute(duty[day] || "")}"
+            placeholder="Ім'я учня"
+        >
+
+        <div class="btn-row">
+
+            <button
+                class="btn primary"
+                onclick="saveDuty(${dayIndex})"
+            >
+                Зберегти
+            </button>
+
+            <button
+                class="btn"
+                onclick="closeModal()"
+            >
+                Скасувати
+            </button>
+
+        </div>
+    `);
+}
+
+
+function saveDuty(dayIndex) {
+
+    const name =
+        document.getElementById("dutyName").value.trim();
+
+    const duty = getDuty();
+
+    duty[DAYS[dayIndex]] =
+        name || "Не призначено";
+
+    localStorage.setItem(
+        "ls_duty",
+        JSON.stringify(duty)
+    );
+
+    closeModal();
+
+    renderAll();
+}
+
+
+/* =========================
+   ADMIN SCHEDULE MANAGER
+========================= */
+
+function openScheduleManager() {
+
+    showPage(
+        "schedule",
+        document.querySelectorAll(".nav-btn")[1]
+    );
+
+    alert(
+        "Тепер відкрий потрібний день. Там ти можеш додавати, змінювати або видаляти уроки."
+    );
+}
+
+
+function openDutyManager() {
+
+    showPage(
+        "duty",
+        document.querySelectorAll(".nav-btn")[4]
+    );
+
+    alert(
+        "У вкладці «Чергові» ти можеш змінювати чергових."
+    );
+}
+
+
+/* =========================
+   ADMIN PROFILE
+========================= */
+
+function openProfile() {
+
+    openModal(`
+
+        <h2>${isAdmin ? "👑 Староста" : "👨‍🎓 Профіль"}</h2>
+
+        <div class="card" style="box-shadow:none;background:#f7f8fb;">
+
+            <div class="card-title">
+                ${isAdmin ? "Режим адміністратора" : "Учнівський режим"}
+            </div>
+
+            <p class="muted">
+                ${
+                    isAdmin
+                    ? "Ти маєш повний доступ до редагування даних."
+                    : "Ти можеш переглядати інформацію школи."
+                }
+            </p>
+
+        </div>
+
+        <div class="btn-row">
+
+            ${
+                isAdmin
+                ? `
+                <button
+                    class="btn primary"
+                    onclick="closeModal();showPage('admin',document.getElementById('adminNav'))"
+                >
+                    ⚙️ Адмін-панель
+                </button>
+                `
+                : ""
+            }
+
+            <button
+                class="btn danger"
+                onclick="closeModal();logout()"
+            >
+                Вийти
+            </button>
+
+        </div>
+    `);
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(content) {
+
+    document.getElementById("modalContent").innerHTML =
+        content;
+
+    document.getElementById("modalBg")
+        .classList.add("show");
+}
+
+
+function closeModal() {
+
+    document.getElementById("modalBg")
+        .classList.remove("show");
+}
+
+
+document.getElementById("modalBg").addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetData() {
+
+    if (
+        !confirm(
+            "Точно скинути розклад, домашку, події та чергових?"
+        )
+    ) return;
+
+    localStorage.removeItem("ls_schedule");
+    localStorage.removeItem("ls_duty");
+    localStorage.removeItem("ls_homework");
+    localStorage.removeItem("ls_events");
+
+    loadData();
+
+    renderAll();
+
+    alert("Дані повернено до стандартних.");
+}
+
+
+/* =========================
+   SECURITY HELPERS
+========================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function escapeAttribute(text) {
+
+    return escapeHTML(text);
+}
+
+
+/* =========================
+   RENDER ALL
+========================= */
+
+function renderAll() {
+
+    renderHome();
+    renderSchedule();
+    renderHomework();
+    renderEvents();
+    renderDuty();
+}
+
+
+/* =========================
+   STARTUP
+========================= */
+
+loadData();
+
+selectedDay = getCurrentDayIndex();
+
+if (sessionStorage.getItem("ls_admin") === "true") {
+
+    isAdmin = true;
+
+    startApp();
+
+} else {
+
+    const savedName =
+        localStorage.getItem("student_name");
+
+    if (savedName) {
+        document.getElementById("studentName").value =
+            savedName;
+    }
+
+}
+
+</script>
+
+</body>
+</html>
